@@ -1,6 +1,8 @@
 import { Box } from '@mui/material'
 import { FC } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { LoginPage } from './views/loginPage'
+import { UsersPage } from './views/usersPage'
 
 type AppPropsType = {
   
@@ -12,6 +14,9 @@ export const App: FC<AppPropsType> = ({  }) => {
     flexDirection: 'column',
     marginTop: 16
   }}  >
-    <LoginPage />
+    <Routes>
+      <Route path='/' element={<LoginPage />} />
+      <Route path='/users' element={<UsersPage />} />
+    </Routes>
   </Box>
 }

@@ -1,9 +1,12 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "users": [
+    { "id": "1", "fullName": "Fyodor Sivkov", "age": 24, "nationality": "Russian", "gender": "male", "photoUrl": "https://avatars.mds.yandex.net/get-zen_doc/3845269/pub_5f43d211ba259900e32fa58a_5f455135efe0fa6c7c5a0665/scale_1200" },
+    { "id": "2", "fullName": "Magomet De Felice", "age": 14, "nationality": "Russian", "gender": "male", "photoUrl": "https://mir-okon73.ru/wp-content/uploads/2020/06/s1200-1-300x200.jpg" },
+    { "id": "3", "fullName": "Daniella Gupta", "age": 31, "nationality": "American", "gender": "female", "photoUrl": "https://duanerobinson.com.au/WP/wp-content/uploads/2013/01/PeoplePortrait0007-300x300.jpg" },
+    { "id": "4", "fullName": "Souta Horvat", "age": 20, "nationality": "Japanese", "gender": "male", "photoUrl": "https://elektrosan.ru/userfs/1e.jpg" },
+    { "id": "5", "fullName": "Bishan Martens", "age": 5, "nationality": "Indian", "gender": "male", "photoUrl": "https://i.pinimg.com/236x/f5/09/e5/f509e50a7e4c1a828c41c473a6ab7c38--smart-people-real-people.jpg?nii=t" },
+    { "id": "6", "fullName": "Viola Grigorescu", "age": 22, "nationality": "Hungarian", "gender": "female", "photoUrl": "https://i2.wp.com/nastroy.net/pic/images/201805/1526633836_12_86527857.jpg" },
+    { "id": "7", "fullName": "Abeni Nguyen", "age": 16, "nationality": "Finnish", "gender": "female", "photoUrl": "https://stihi.ru/pics/2015/09/29/6868.jpg" },
+    { "id": "8", "fullName": "Sylvie Zima", "age": 34, "nationality": "Finnish", "gender": "female", "photoUrl": "https://qph.fs.quoracdn.net/main-thumb-377543595-200-eqdxjavjvnfxytgnxqioscaofpsfaukn.jpeg" }
+  ]
 }
