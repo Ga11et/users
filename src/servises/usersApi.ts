@@ -1,20 +1,46 @@
 import { UserPropsType } from './../models/users';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Define a service using a base URL and expected endpoints
 export const usersApi = createApi({
   reducerPath: 'usersApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/users' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+  tagTypes: ['allUsers'],
   endpoints: (builder) => ({
-    getUsersByName: builder.query<UserPropsType[], string>({
-      query: (name) => `?fullName_like=${name}`,
-    }),
     getUsers: builder.query<UserPropsType[], {}>({
-      query: () => ''
+      query: () => '/allUsers',
+      providesTags: result => ['allUsers']
+    }),
+    addUser: builder.mutation<{}, UserPropsType>({
+      query: (userData) => ({
+        url: '/allUsers',
+        method: 'POST',
+        body: userData
+      }),
+      invalidatesTags: ['allUsers']
+    }),
+    deleteUser: builder.mutation<{}, string>({
+      query: (id) => ({
+        url: `/allUsers/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['allUsers']
+    }),
+    changeUser: builder.mutation<{}, UserPropsType>({
+      query: (userData) => ({
+        url: `/allUsers/${userData.id}`,
+        method: 'PUT',
+        body: userData
+      }),
+      invalidatesTags: ['allUsers']
+    }),
+    login: builder.mutation<{ accessToken: string }, { email: string, password: string }>({
+      query: (loginData) => ({
+        url: '/login',
+        method: 'POST',
+        body: loginData
+      })
     })
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetUsersByNameQuery, useGetUsersQuery } = usersApi
+export const { useGetUsersQuery, useAddUserMutation, useDeleteUserMutation, useChangeUserMutation, useLoginMutation } = usersApi

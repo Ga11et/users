@@ -1,19 +1,32 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { useFormik } from 'formik'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../app/hooks'
+import { useLoginMutation } from '../servises/usersApi'
 
 type LoginPagePropsType = {
 
 }
 export const LoginPage: FC<LoginPagePropsType> = ({ }) => {
 
+  const [postLogin, result] = useLoginMutation()
+
+  const { isAuth, error } = useAppSelector(state => state.appReduser)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    isAuth && navigate('users')
+  },[isAuth])
+
   const formik = useFormik({
     initialValues: {
-      login: '',
+      email: '',
       password: ''
     },
     onSubmit: (values) => {
-      console.table(JSON.stringify(values))
+      postLogin(values)
     }
   })
 
@@ -30,8 +43,8 @@ export const LoginPage: FC<LoginPagePropsType> = ({ }) => {
         <Typography component={'h1'}>
           Логин
         </Typography>
-        <TextField id={'login'} margin={'normal'} fullWidth label='login' value={formik.values.login} onChange={formik.handleChange} />
-        <TextField id='password' margin={'normal'} fullWidth label='password' value={formik.values.password} onChange={formik.handleChange} />
+        <TextField error={!!error} id={'email'} margin={'normal'} fullWidth label='email' value={formik.values.email} onChange={formik.handleChange} />
+        <TextField error={!!error} helperText={error} id='password' type='password' margin={'normal'} fullWidth label='password' value={formik.values.password} onChange={formik.handleChange} />
         <Button
           variant='contained'
           type='submit'

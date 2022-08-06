@@ -1,16 +1,19 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { FC } from 'react'
 import { UserPropsType } from '../models/users'
+import { useDeleteUserMutation } from '../servises/usersApi'
 
 type PropsType = {
   content: UserPropsType
 
-  setIsOpen: (value: boolean) => void
+  buttonClickHandler: (id: string) => void
 }
 
-export const User: FC<PropsType> = ({ content, setIsOpen }) => {
+export const User: FC<PropsType> = ({ content, buttonClickHandler }) => {
 
   const { age, fullName, gender, id, photoUrl, nationality } = content
+
+  const [deleteUser, {}] = useDeleteUserMutation()
 
   return <>
     <Card
@@ -40,8 +43,8 @@ export const User: FC<PropsType> = ({ content, setIsOpen }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant='contained' color='info' onClick={() => setIsOpen(true)}>Изменить</Button>
-        <Button variant='contained' color='error'>Удалить</Button>
+        <Button variant='contained' color='info' onClick={() => buttonClickHandler(id)}>Изменить</Button>
+        <Button variant='contained' color='error' onClick={() => deleteUser(id)} >Удалить</Button>
       </CardActions>
     </Card>
   </>

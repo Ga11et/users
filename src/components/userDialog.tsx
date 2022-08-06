@@ -1,27 +1,32 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Select, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { UserPropsType } from '../models/users'
+import { useAddUserMutation, useChangeUserMutation } from '../servises/usersApi'
 
 type UserDialogPropsType = {
-  id?: string
+  userData?: UserPropsType
   isOpen: boolean
 
   setIsOpen: (value: boolean) => void
 }
-export const UserDialog: FC<UserDialogPropsType> = ({ id, isOpen, setIsOpen }) => {
+export const UserDialog: FC<UserDialogPropsType> = React.memo(({ userData, isOpen, setIsOpen }) => {
+
+  const [addPost, result] = useAddUserMutation()
+  const [updateUser, {}] = useChangeUserMutation()
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      fullName: '',
-      photoUrl: '',
-      age: 0,
-      gender: 'male',
-      id: '',
-      nationality: ''
+      fullName: userData ? userData.fullName : '',
+      photoUrl: userData ? userData.photoUrl : '',
+      age: userData ? userData.age : 0,
+      gender: userData ? userData.gender : 'male',
+      id: userData ? userData.id : '',
+      nationality: userData ? userData.nationality : ''
     } as UserPropsType,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values))
+      userData ? updateUser(values) : addPost(values)
       setIsOpen(false)
     },
   })
@@ -29,7 +34,7 @@ export const UserDialog: FC<UserDialogPropsType> = ({ id, isOpen, setIsOpen }) =
   return <>
     <Dialog open={isOpen} >
       <DialogTitle component='h2' variant='h5' textAlign='center' marginTop={3}>
-        {id ? 'Изменить пользователя' : 'Добавить пользователя'}
+        {userData ? 'Изменить пользователя' : 'Добавить пользователя'}
       </DialogTitle>
       <DialogContent>
         <Box sx={{
@@ -67,4 +72,4 @@ export const UserDialog: FC<UserDialogPropsType> = ({ id, isOpen, setIsOpen }) =
 
     </Dialog>
   </>
-}
+})
