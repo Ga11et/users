@@ -7,7 +7,7 @@ import { appSlice } from '../app/reducers/appReducer'
 type SearchInputPropsType = {
   
 }
-export const SearchInput: FC<SearchInputPropsType> = ({  }) => {
+export const SearchInput: FC<SearchInputPropsType> = () => {
 
   const dispatch = useAppDispatch()
 

@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { FC } from 'react'
 import { UserPropsType } from '../models/users'
 import { useDeleteUserMutation } from '../servises/usersApi'
@@ -13,7 +13,7 @@ export const User: FC<PropsType> = ({ content, buttonClickHandler }) => {
 
   const { age, fullName, gender, id, photoUrl, nationality } = content
 
-  const [deleteUser, {}] = useDeleteUserMutation()
+  const [deleteUser] = useDeleteUserMutation()
 
   return <>
     <Card

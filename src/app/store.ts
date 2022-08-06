@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { usersApi } from '../servises/usersApi';
 import appReduser from './reducers/appReducer'
 

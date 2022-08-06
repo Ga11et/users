@@ -12,8 +12,8 @@ type UserDialogPropsType = {
 }
 export const UserDialog: FC<UserDialogPropsType> = React.memo(({ userData, isOpen, setIsOpen }) => {
 
-  const [addPost, result] = useAddUserMutation()
-  const [updateUser, {}] = useChangeUserMutation()
+  const [addPost] = useAddUserMutation()
+  const [updateUser] = useChangeUserMutation()
 
   const formik = useFormik({
     enableReinitialize: true,

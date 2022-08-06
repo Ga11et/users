@@ -12,9 +12,9 @@ import { appSlice } from '../app/reducers/appReducer'
 type UsersPagePropsType = {
   
 }
-export const UsersPage: FC<UsersPagePropsType> = React.memo(({  }) => {
+export const UsersPage: FC<UsersPagePropsType> = React.memo(() => {
 
-  const { data, error, isLoading } = useGetUsersQuery({})
+  const { data, isLoading } = useGetUsersQuery({})
   const [isOpen, setIsOpen] = useState(false)
   const [dialogId, setDialogId] = useState('')
   const { isAuth, search } = useAppSelector(state => state.appReduser)
@@ -23,7 +23,7 @@ export const UsersPage: FC<UsersPagePropsType> = React.memo(({  }) => {
 
   useEffect(() => {
     !isAuth && navigate('../')
-  }, [isAuth])
+  }, [isAuth, navigate])
 
   const buttonClickHandler = (id = 'none') => {
     setDialogId(id)

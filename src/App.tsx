@@ -7,7 +7,7 @@ import { UsersPage } from './views/usersPage'
 type AppPropsType = {
   
 }
-export const App: FC<AppPropsType> = ({  }) => {
+export const App: FC<AppPropsType> = () => {
   return <Box sx={{
     display: 'flex',
     alignItems: 'center',

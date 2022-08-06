@@ -8,9 +8,9 @@ import { useLoginMutation } from '../servises/usersApi'
 type LoginPagePropsType = {
 
 }
-export const LoginPage: FC<LoginPagePropsType> = ({ }) => {
+export const LoginPage: FC<LoginPagePropsType> = () => {
 
-  const [postLogin, result] = useLoginMutation()
+  const [postLogin] = useLoginMutation()
 
   const { isAuth, error } = useAppSelector(state => state.appReduser)
 
@@ -18,7 +18,7 @@ export const LoginPage: FC<LoginPagePropsType> = ({ }) => {
 
   useEffect(() => {
     isAuth && navigate('users')
-  },[isAuth])
+  },[isAuth, navigate])
 
   const formik = useFormik({
     initialValues: {
